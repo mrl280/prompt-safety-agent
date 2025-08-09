@@ -48,7 +48,8 @@
                 "ms-python.isort",
                 "redhat.vscode-yaml",
                 "shd101wyy.markdown-preview-enhanced",
-                "stkb.rewrap"
+                "stkb.rewrap",
+                "ms-toolsai.jupyter"
             ]
         }
     },
