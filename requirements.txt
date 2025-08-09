@@ -1,6 +1,13 @@
+--extra-index-url https://download.pytorch.org/whl/cu121  # CUDA 12.9 support for torch and torchvision.
+
 jupyter==1.0.0  # Jupyter system, including the notebook and the IPython kernel, all in one go.
 datasets~=4.0.0
 pandas~=2.3.1
 scikit-learn~=1.7.1
 plotly~=6.2.0
 numpy~=2.3.2
+transformers~=4.55.0
+torch==2.8.0
+torchvision==0.23.0
+accelerate~=1.10.0
+hf-xet~=1.1.7
