@@ -3,7 +3,7 @@ import re
 from typing import Optional
 
 from src import DATA_DIR
-from src.utils.safety_report import SafetyReport
+from src.utils.reports import SafetyReport
 
 
 class KeywordChecker:
@@ -35,6 +35,7 @@ class KeywordChecker:
         if match:
             matched_word = match.group(0)
             return SafetyReport(
+                label=1,
                 score=1,
                 confidence=1,
                 explanation=f'Word "{matched_word}" in prompt is in list of blocked keywords.',
