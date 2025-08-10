@@ -6,11 +6,12 @@ from typing import Optional
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
-from src import PROMPTS_DIR
-from src.utils.reports import SafetyReport
+from app import PROMPTS_DIR
+from app.classifiers import Classifier
+from app.utils import SafetyReport
 
 
-class LLMPromptClassifier:
+class LLMPromptClassifier(Classifier):
     """
     Uses a local LLM to generate prompt safety reports.
     """
@@ -27,16 +28,15 @@ class LLMPromptClassifier:
         with open(self._prompt_filepath, "r", encoding="utf-8") as f:
             self._system_prompt = f.read()
 
-    def classify_prompt(self, prompt: str, max_new_tokens: int = 256) -> Optional[SafetyReport]:
+    def report(self, prompt: str) -> Optional[SafetyReport]:
         """
-        Classify a prompt using the local LLM, and parsing the response into a SafetyReport object.
+        Classify a prompt using the local LLM, returning a SafetyReport if possible.
 
         Args:
             prompt (str): The input prompt to classify.
-            max_new_tokens (int): Maximum tokens to generate.
 
         Returns:
-            SafetyReport or None: Parsed safety evaluation, or None if parsing fails.
+            SafetyReport if parsing succeeds; otherwise None.
         """
         messages = [{"role": "system", "content": self._system_prompt}, {"role": "user", "content": prompt}]
 
@@ -45,7 +45,7 @@ class LLMPromptClassifier:
         inputs = self._tokenizer([chat_text], return_tensors="pt").to(self._model.device)
 
         with torch.no_grad():
-            generated_ids = self._model.generate(**inputs, max_new_tokens=max_new_tokens)
+            generated_ids = self._model.generate(**inputs, max_new_tokens=256)
 
         # Remove input prompt tokens from the generated output
         generated_ids = [
@@ -118,6 +118,7 @@ def parse_safety_report(response_text: str) -> Optional[SafetyReport]:
             confidence=confidence,
             explanation=explanation,
             recommendation=recommendation,
+            classifier="LLMPromptClassifier",
         )
     except (json.JSONDecodeError, TypeError, KeyError) as e:
         print(f"Error parsing JSON: {e}")
