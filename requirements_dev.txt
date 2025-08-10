@@ -1,4 +1,4 @@
---extra-index-url https://download.pytorch.org/whl/cu121  # CUDA 12.9 support for torch and torchvision.
+--extra-index-url https://download.pytorch.org/whl/cu126  # CUDA 12.6 support for torch and torchvision.
 
 jupyter==1.0.0  # Jupyter system, including the notebook and the IPython kernel, all in one go.
 datasets~=4.0.0

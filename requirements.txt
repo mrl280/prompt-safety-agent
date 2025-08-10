@@ -1,4 +1,4 @@
---extra-index-url https://download.pytorch.org/whl/cu121  # CUDA 12.9 support for torch and torchvision.
+--extra-index-url https://download.pytorch.org/whl/cu126  # CUDA 12.6 support for torch and torchvision.
 
 datasets~=4.0.0
 pandas~=2.3.1
