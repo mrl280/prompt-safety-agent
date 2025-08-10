@@ -13,7 +13,11 @@ accelerate~=1.10.0
 hf-xet~=1.1.7
 click~=8.2.1
 
+# For Mistral
+protobuf~=6.31.1  
+sentencepiece~=0.2.0
+
 # Linting and formatting
 isort~=6.0.1
-black~=25.1.0
+black[jupyter]~=25.1.0
 flake8~=5.0.4
