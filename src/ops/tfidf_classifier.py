@@ -7,15 +7,15 @@ from src import MODELS_DIR
 from src.utils.reports import ClassifierPredictionResult
 
 
-class PromptClassifier:
+class TfidfClassifier:
     """
     Loads a trained TF-IDF + Logistic Regression classification model and predicts safety labels and confidence for prompts.
     """
 
     _model_filepath = os.path.join(MODELS_DIR, "classifier.joblib")
 
-    def __init__(self, model_path: str):
-        self._model: Pipeline = joblib.load(model_path)
+    def __init__(self):
+        self._model: Pipeline = joblib.load(self._model_filepath)
 
     def predict_prompt_with_confidence(self, prompt: str) -> ClassifierPredictionResult:
         """
