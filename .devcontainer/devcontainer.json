@@ -49,7 +49,9 @@
                 "redhat.vscode-yaml",
                 "shd101wyy.markdown-preview-enhanced",
                 "stkb.rewrap",
-                "ms-toolsai.jupyter"
+                "ms-toolsai.jupyter",
+                "tamasfe.even-better-toml",
+                "docker.docker"
             ]
         }
     },
