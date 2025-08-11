@@ -31,8 +31,10 @@ COPY prompts /app/prompts
 COPY data /app/data
 COPY docs /app/docs
 
-# Clone the Qwen3-4B-Instruct-2507 model from Hugging Face into /app/models folder
-RUN git clone https://huggingface.co/Qwen/Qwen3-4B-Instruct-2507 /app/models/Qwen3-4B-Instruct-2507
+# Clone the Qwen3-4B-Instruct-2507 model from Hugging Face into /app/models, if it doesn't already exist
+RUN [ ! -d /app/models/Qwen3-4B-Instruct-2507 ] && \
+    git clone https://huggingface.co/Qwen/Qwen3-4B-Instruct-2507 /app/models/Qwen3-4B-Instruct-2507 || \
+    echo "Model Qwen3-4B-Instruct-2507 already exists, skipping clone"
 
 # Copy your source code into /app
 COPY src/ /app/src/

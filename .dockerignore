@@ -1,0 +1,4 @@
+# Ignore all files in the models/ directory except those required in the production deployment
+models/*
+!models/tdidf_classifier.joblib
+!models/Qwen3-4B-Instruct-2507/
