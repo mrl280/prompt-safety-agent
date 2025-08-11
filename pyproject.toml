@@ -7,5 +7,9 @@ exclude = '''
         | \.github
         | \.vscode
         | \.devcontainer
+        | data
+        | models
+        | prompts
+        | docs
     )/
 '''
