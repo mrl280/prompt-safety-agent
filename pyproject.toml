@@ -6,6 +6,8 @@ exclude = '''
           \.git
         | \.github
         | \.vscode
+        | \.venv
+        | venv
         | \.devcontainer
         | data
         | models
