@@ -2,12 +2,12 @@ import os
 import re
 from typing import Optional
 
-from src.classifiers import Classifier
+from src.analyzers import Analyzer
 from src.utils import SafetyReport
 from src.utils.paths import DATA_DIR
 
 
-class StaticKeywordChecker(Classifier):
+class KeywordChecker(Analyzer):
     """
     Checks input prompts against a list of blocked keywords.
     """
@@ -42,6 +42,6 @@ class StaticKeywordChecker(Classifier):
                 confidence=1.0,
                 explanation=f"Word '{matched_word}' in prompt is in list of blocked keywords.",
                 recommendation="Block this prompt and flag for review.",
-                classifier=self.get_class_name(),
+                analyzer=[self.component_name],
             )
         return None

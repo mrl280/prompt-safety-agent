@@ -13,7 +13,7 @@ class SafetyReport:
         score (Optional[float]): Numeric safety score between 0.0 (safe) and 1.0 (unsafe).
         explanation (str): Detailed explanation of why the prompt was flagged.
         recommendation (str): Suggested action based on the evaluation.
-        classifier (str): Name of the classification mechanism that generated the report.
+        analyzer (list[str]): Names of the analysis components that contributed to the report.
     """
 
     label: int
@@ -21,4 +21,4 @@ class SafetyReport:
     confidence: float
     explanation: str
     recommendation: str
-    classifier: str
+    analyzer: list[str]

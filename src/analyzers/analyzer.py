@@ -4,7 +4,7 @@ from typing import Optional
 from src.utils import SafetyReport
 
 
-class Classifier(ABC):
+class Analyzer(ABC):
     """
     Abstract base class for prompt analyzers.
     """
@@ -22,8 +22,9 @@ class Classifier(ABC):
         """
         pass
 
-    def get_class_name(self) -> str:
+    @property
+    def component_name(self) -> str:
         """
-        Return the analyzer name as a string.
+        Name and identifier of the analyzer.
         """
         return self.__class__.__name__

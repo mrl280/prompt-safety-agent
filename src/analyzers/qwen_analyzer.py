@@ -6,14 +6,14 @@ from typing import Optional
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
-from src.classifiers import Classifier
+from src.analyzers import Analyzer
 from src.utils import SafetyReport
 from src.utils.paths import MODELS_DIR, PROMPTS_DIR
 
 
-class LLMPromptClassifier(Classifier):
+class QwenAnalyzer(Analyzer):
     """
-    Uses a local LLM (Qwen3-4B-Instruct-2507) to generate prompt safety reports.
+    Generates prompt safety reports using the Qwen3-4B-Instruct-2507 local LLM.
     """
 
     _sys_prompt_filepath = os.path.join(PROMPTS_DIR, "safety_check.txt")
@@ -86,7 +86,7 @@ class LLMPromptClassifier(Classifier):
                 return None
 
             score = float(response_dict["score"])
-            confidence = float(response_dict["confidence"])
+            confidence = round(float(response_dict["confidence"]), 2)
             explanation = response_dict["explanation"]
             recommendation = response_dict["recommendation"]
 
@@ -117,7 +117,7 @@ class LLMPromptClassifier(Classifier):
                 confidence=confidence,
                 explanation=explanation,
                 recommendation=recommendation,
-                classifier=self.get_class_name(),
+                analyzer=[self.component_name],
             )
         except (json.JSONDecodeError, TypeError, KeyError) as e:
             print(f"Error parsing JSON: {e}")

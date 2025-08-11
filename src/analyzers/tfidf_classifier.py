@@ -3,12 +3,12 @@ import os
 import joblib
 from sklearn.pipeline import Pipeline
 
-from src.classifiers import Classifier
+from src.analyzers import Analyzer
 from src.utils import SafetyReport
 from src.utils.paths import MODELS_DIR
 
 
-class TfidfClassifier(Classifier):
+class TfidfClassifier(Analyzer):
     """
     Uses a TF-IDF + Logistic Regression classification model to generate safety reports.
     """
@@ -44,8 +44,8 @@ class TfidfClassifier(Classifier):
         return SafetyReport(
             label=label,
             score=None,
-            confidence=confidence,
+            confidence=round(confidence, 2),
             explanation=explanation,
             recommendation=recommendation,
-            classifier=self.get_class_name(),
+            analyzer=[self.component_name],
         )
