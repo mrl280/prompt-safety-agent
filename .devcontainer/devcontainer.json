@@ -20,8 +20,11 @@
     },
     "runArgs": [
         // Give the container GPU access. To put it simply, use --gpus on x86 and --runtime=nvidia on jetson/ARM SBSA.
-        "--gpus=all"
+        "--gpus=all",
         // "--runtime=nvidia",
+        // Map port 8000 on host to port 8000 in container for Flask app access
+        "-p",
+        "8000:8000"
     ],
     "workspaceMount": "source=${localWorkspaceFolder},target=/app,type=bind,consistency=cached",
     "workspaceFolder": "/app",
