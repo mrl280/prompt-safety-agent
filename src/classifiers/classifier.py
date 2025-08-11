@@ -6,13 +6,13 @@ from src.utils import SafetyReport
 
 class Classifier(ABC):
     """
-    Abstract base class for prompt classifiers.
+    Abstract base class for prompt analyzers.
     """
 
     @abstractmethod
-    def report(self, prompt: str) -> Optional[SafetyReport]:
+    def analyze(self, prompt: str) -> Optional[SafetyReport]:
         """
-        Evaluate the prompt and return a SafetyReport, if available.
+        Analyze the prompt and return a SafetyReport, if available.
 
         Args:
             prompt (str): The input text prompt to check.
@@ -21,3 +21,9 @@ class Classifier(ABC):
             SafetyReport if available, otherwise None.
         """
         pass
+
+    def get_class_name(self) -> str:
+        """
+        Return the analyzer name as a string.
+        """
+        return self.__class__.__name__

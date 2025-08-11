@@ -15,19 +15,18 @@ def cli(ctx):
 
 @cli.command()
 @click.argument("prompt")
-def check(prompt):
+def analyze(prompt):
     """
-    Evaluate the safety of the given PROMPT.
+    Analyze the safety of the given PROMPT.
 
     PROMPT: The text prompt to evaluate for safety.
     """
     import dataclasses
     import json
 
-    from src.pipeline import SafetyPipeline
+    from src.pipeline import analyze as analysis_pipeline
 
-    pipeline = SafetyPipeline()
-    report = pipeline.run(prompt)
+    report = analysis_pipeline(prompt)
     report_dict = dataclasses.asdict(report)
     click.echo(json.dumps(report_dict, indent=2))
 
@@ -41,7 +40,7 @@ def docs(host, port):
     """
     import subprocess
 
-    cmd = ["gunicorn", "src.utils.docs_server:app", "--bind", f"{host}:{port}"]
+    cmd = ["gunicorn", "src.utils.docs_server:app", "--bind", f"{host}:{port}"]  # noqa: E231
     click.echo(f"Starting Gunicorn with command: {' '.join(cmd)}")
     subprocess.run(cmd)
 

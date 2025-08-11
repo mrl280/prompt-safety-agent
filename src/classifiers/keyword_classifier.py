@@ -23,7 +23,7 @@ class StaticKeywordChecker(Classifier):
             flags=re.IGNORECASE,
         )
 
-    def report(self, prompt: str) -> Optional[SafetyReport]:
+    def analyze(self, prompt: str) -> Optional[SafetyReport]:
         """
         Check if the prompt contains any blocked keywords.
 
@@ -40,8 +40,8 @@ class StaticKeywordChecker(Classifier):
                 label=1,
                 score=1.0,
                 confidence=1.0,
-                explanation=f'Word "{matched_word}" in prompt is in list of blocked keywords.',
+                explanation=f"Word '{matched_word}' in prompt is in list of blocked keywords.",
                 recommendation="Block this prompt and flag for review.",
-                classifier="StaticKeywordChecker",
+                classifier=self.get_class_name(),
             )
         return None

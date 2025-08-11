@@ -13,13 +13,15 @@ class TfidfClassifier(Classifier):
     Uses a TF-IDF + Logistic Regression classification model to generate safety reports.
     """
 
-    _model_filepath = os.path.join(MODELS_DIR, "classifier.joblib")
+    _model_filepath = os.path.join(MODELS_DIR, "tdidf_classifier.joblib")
 
     def __init__(self):
         self._model: Pipeline = joblib.load(self._model_filepath)
 
-    def report(self, prompt: str) -> SafetyReport:
+    def analyze(self, prompt: str) -> SafetyReport:
         """
+        Classify prompt using TF-IDF + Logistic Regression classification model.
+
         Predict the label and confidence score for a single input prompt.
 
         Args:
@@ -45,5 +47,5 @@ class TfidfClassifier(Classifier):
             confidence=confidence,
             explanation=explanation,
             recommendation=recommendation,
-            classifier="TfidfClassifier",
+            classifier=self.get_class_name(),
         )
