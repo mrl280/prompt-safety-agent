@@ -2,9 +2,9 @@ import os
 import re
 from typing import Optional
 
-from app.classifiers import Classifier
-from app.utils import SafetyReport
-from app.utils.paths import DATA_DIR
+from src.classifiers import Classifier
+from src.utils import SafetyReport
+from src.utils.paths import DATA_DIR
 
 
 class StaticKeywordChecker(Classifier):

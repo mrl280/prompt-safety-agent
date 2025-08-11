@@ -1,6 +1,5 @@
-from classifiers import LLMPromptClassifier, StaticKeywordChecker, TfidfClassifier
-
-from app.utils import SafetyReport
+from src.classifiers import LLMPromptClassifier, StaticKeywordChecker, TfidfClassifier
+from src.utils import SafetyReport
 
 
 class SafetyPipeline:

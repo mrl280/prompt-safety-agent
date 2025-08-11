@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 from typing import Optional
 
-from app.utils import SafetyReport
+from src.utils import SafetyReport
 
 
 class Classifier(ABC):

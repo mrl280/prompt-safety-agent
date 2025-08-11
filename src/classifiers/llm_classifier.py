@@ -6,9 +6,9 @@ from typing import Optional
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
-from app.classifiers import Classifier
-from app.utils import SafetyReport
-from app.utils.paths import PROMPTS_DIR
+from src.classifiers import Classifier
+from src.utils import SafetyReport
+from src.utils.paths import PROMPTS_DIR
 
 
 class LLMPromptClassifier(Classifier):

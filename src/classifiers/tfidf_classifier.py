@@ -3,9 +3,9 @@ import os
 import joblib
 from sklearn.pipeline import Pipeline
 
-from app.classifiers import Classifier
-from app.utils import SafetyReport
-from app.utils.paths import MODELS_DIR
+from src.classifiers import Classifier
+from src.utils import SafetyReport
+from src.utils.paths import MODELS_DIR
 
 
 class TfidfClassifier(Classifier):

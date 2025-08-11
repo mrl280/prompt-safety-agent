@@ -23,19 +23,25 @@ RUN pip install --upgrade pip && \
     pip install --no-cache-dir -r requirements.txt && \
     rm requirements.txt
 
-# Clone the Qwen3-4B-Instruct-2507 model from Hugging Face into /opt/models folder
-RUN mkdir -p /opt/models && \
-    git clone https://huggingface.co/Qwen/Qwen3-4B-Instruct-2507 /opt/models/Qwen3-4B-Instruct-2507
+
+# Copy local prompt, model, and data files to /app directory
+RUN mkdir -p /app/models /app/prompts /app/data
+COPY models /app/models
+COPY prompts /app/prompts
+COPY data /app/data
+
+# Clone the Qwen3-4B-Instruct-2507 model from Hugging Face into /app/models folder
+RUN git clone https://huggingface.co/Qwen/Qwen3-4B-Instruct-2507 /app/models/Qwen3-4B-Instruct-2507
 
 # Copy your source code into /app
-COPY app/ ./
+COPY src/ /app/src/
 
 # Change ownership so non-root user can access files
-RUN chown -R $USERNAME:$USERNAME /app /opt/models
+RUN chown -R $USERNAME:$USERNAME /app
 
 # Switch to non-root user
 USER $USERNAME
 
 # Set default command to your CLI script entry point, passing command line argument(s)
-ENTRYPOINT ["python", "cli.py"]
+ENTRYPOINT ["python", "-m", "src.cli"]
 CMD []
