@@ -51,7 +51,8 @@
                 "stkb.rewrap",
                 "ms-toolsai.jupyter",
                 "tamasfe.even-better-toml",
-                "docker.docker"
+                "docker.docker",
+                "davidanson.vscode-markdownlint"
             ]
         }
     },
