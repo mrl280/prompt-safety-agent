@@ -30,10 +30,6 @@ RUN pip install --upgrade pip && \
     pip install --no-cache-dir -r requirements_dev.txt && \
     rm requirements_dev.txt
 
-# Clone the Qwen3-4B-Instruct-2507 model from Hugging Face into /opt/models folder
-RUN mkdir -p /opt/models && \
-    git clone https://huggingface.co/Qwen/Qwen3-4B-Instruct-2507 /opt/models/Qwen3-4B-Instruct-2507
-
 # Create working directory
 ARG WORKSPACE_DIR=/app
 RUN mkdir -p $WORKSPACE_DIR && chown agent:agent $WORKSPACE_DIR

@@ -1,5 +1,6 @@
 {
     "name": "Prompt Safety Agent",
+    "initializeCommand": "bash .devcontainer/initialize-command.sh",
     "build": {
         "context": "..",
         "dockerfile": "Dockerfile",
