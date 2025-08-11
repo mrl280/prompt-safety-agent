@@ -10,3 +10,7 @@ torch==2.8.0
 torchvision==0.23.0
 accelerate~=1.10.0
 click~=8.2.1
+
+# Requirements for the documentation web server
+Flask~=3.1.1
+gunicorn~=23.0.0

@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Welcome to the Prompt Safety Agent Documentation</h1>
+<p>Here are available reports and plots:</p>
+<ul class="list-group">
+    {% for report in reports %}
+    <li class="list-group-item">
+        <a href="{{ url_for('serve_docs', filename=report) }}" target="_blank">{{ report }}</a>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}
