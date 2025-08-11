@@ -34,8 +34,8 @@ RUN pip install --upgrade pip && \
 RUN mkdir -p /opt/models && \
     git clone https://huggingface.co/Qwen/Qwen3-4B-Instruct-2507 /opt/models/Qwen3-4B-Instruct-2507
 
-# Create working directory and models subdirectory
-ARG WORKSPACE_DIR=/workspace
+# Create working directory
+ARG WORKSPACE_DIR=/app
 RUN mkdir -p $WORKSPACE_DIR && chown agent:agent $WORKSPACE_DIR
 WORKDIR $WORKSPACE_DIR
 

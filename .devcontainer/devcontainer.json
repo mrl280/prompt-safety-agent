@@ -22,8 +22,8 @@
         "--gpus=all"
         // "--runtime=nvidia",
     ],
-    "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=cached",
-    "workspaceFolder": "/workspace",
+    "workspaceMount": "source=${localWorkspaceFolder},target=/app,type=bind,consistency=cached",
+    "workspaceFolder": "/app",
     "customizations": {
         "vscode": {
             "settings": {
