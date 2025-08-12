@@ -17,6 +17,7 @@ kaleido~=1.0.0
 # Requirements for the documentation web server
 Flask~=3.1.1
 gunicorn~=23.0.0
+markdown~=3.8.2
 
 # For Mistral
 protobuf~=6.31.1  
@@ -26,3 +27,5 @@ sentencepiece~=0.2.0
 isort~=6.0.1
 black[jupyter]~=25.1.0
 flake8~=5.0.4
+flake8-nb~=0.5.3
+djlint~=1.36.4

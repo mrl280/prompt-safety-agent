@@ -15,3 +15,9 @@ exclude = '''
         | docs
     )/
 '''
+
+[tool.djlint]
+profile = "jinja"
+
+[tool.isort]
+profile = "black"

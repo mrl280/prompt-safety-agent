@@ -14,3 +14,4 @@ click~=8.2.1
 # Requirements for the documentation web server
 Flask~=3.1.1
 gunicorn~=23.0.0
+markdown~=3.8.2

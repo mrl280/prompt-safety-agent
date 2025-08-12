@@ -38,6 +38,9 @@
                         "source.organizeImports": true
                     }
                 },
+                "[html]": {
+                    "editor.defaultFormatter": "monosans.djlint"
+                },
                 "python.sortImports.args": [
                     "--profile",
                     "black"
@@ -56,7 +59,9 @@
                 "ms-toolsai.jupyter",
                 "tamasfe.even-better-toml",
                 "docker.docker",
-                "davidanson.vscode-markdownlint"
+                "davidanson.vscode-markdownlint",
+                "wholroyd.jinja",
+                "monosans.djlint"
             ]
         }
     },
