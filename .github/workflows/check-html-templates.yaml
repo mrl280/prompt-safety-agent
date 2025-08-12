@@ -1,0 +1,31 @@
+name: Lint and Format HTML Templates
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  lint-and-format-templates:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          lfs: false
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install djLint
+        run: pip install djlint
+
+      - name: Check formatting with djLint
+        run: djlint docs --check
+
+      - name: Lint with djLint
+        run: djlint docs --lint

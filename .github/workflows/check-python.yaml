@@ -1,17 +1,26 @@
-name: Linting and Formating Checks
+name: Lint and Format Python
 
 on:
+  push:
+    branches: [main]
   pull_request:
     branches: [main]
   workflow_dispatch:
 
 jobs:
-  linting-and-format-checks:
+  lint-and-format-python:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          lfs: false
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
 
       - name: Check import sorting with iSort
         uses: isort/isort-action@master
@@ -27,15 +36,3 @@ jobs:
 
       - name: Lint with Flake8
         uses: py-actions/flake8@v2
-
-      - name: Install Flake8 for Jupyter Notebooks
-        run: |
-          pip install --upgrade pip
-          pip install flake8-nb
-
-      - name: Run Flake8 for Jupyter Notebooks
-        run: |
-          flake8-nb .
-
-      - name: Ensure Clean Notebooks
-        uses: ResearchSoftwareActions/EnsureCleanNotebooksAction@1.1
