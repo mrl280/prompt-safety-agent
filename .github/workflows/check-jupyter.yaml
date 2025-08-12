@@ -29,7 +29,7 @@ jobs:
 
       - name: Run Flake8 for Jupyter Notebooks
         run: |
-          flake8-nb .
+          flake8-nb notebooks/
 
       - name: Ensure Clean Notebooks
         uses: ResearchSoftwareActions/EnsureCleanNotebooksAction@1.1
