@@ -86,6 +86,122 @@ This algorithm ensures that the LLM is invoked at most once per prompt, minimizi
 
 ## System evaluation
 
-The system was evaluated on the test set of the Safe-Guard Prompt Injection Dataset.
+Two systems were evaluated based on the test subset of the Safe-Guard Prompt Injection Dataset. The evaluation combined the predictions from all three analyzers: if any of the three systems classified an example as unsafe, it was considered unsafe; only when all three systems classified an example as safe was it marked as safe. The system was tested using the LLM analyzer with both Mistral-7B-Instruct-v0.3 and Qwen3-4B-Instruct-2507.
 
-TODO: Add results!
+Table 8 presents the performance metrics for the system using Mistral-7B-Instruct-v0.3, with Figure 12 showing the corresponding confusion matrix. Table 9 presents the performance metrics for Qwen3-4B-Instruct-2507, accompanied by its confusion matrix in Figure 13.
+
+<p align="center"><strong>Table 8:</strong> Test Set Performance Metrics for System with Mistral-7B-Instruct-v0.3</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Class</th>
+      <th>Precision</th>
+      <th>Recall</th>
+      <th>F1-Score</th>
+      <th>Support</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Safe (0)</td>
+      <td>1.00</td>
+      <td>0.91</td>
+      <td>0.95</td>
+      <td>1410</td>
+    </tr>
+    <tr>
+      <td>Unsafe (1)</td>
+      <td>0.84</td>
+      <td>1.00</td>
+      <td>0.91</td>
+      <td>650</td>
+    </tr>
+    <tr>
+      <td>accuracy</td>
+      <td></td>
+      <td></td>
+      <td>0.94</td>
+      <td>2060</td>
+    </tr>
+    <tr>
+      <td>macro avg</td>
+      <td>0.92</td>
+      <td>0.96</td>
+      <td>0.93</td>
+      <td>2060</td>
+    </tr>
+    <tr>
+      <td>weighted avg</td>
+      <td>0.95</td>
+      <td>0.94</td>
+      <td>0.94</td>
+      <td>2060</td>
+    </tr>
+  </tbody>
+</table>
+
+{{ plot:conf_matrix_system_test_Mistral-7B-Instruct-v0.3.html }}
+
+<p align="center"><strong>Figure 12:</strong> Test Set Confusion Matrix for System with Mistral-7B-Instruct-v0.3</p>
+
+<br>
+
+<p align="center"><strong>Table 9:</strong> Test Set Performance Metrics for System with Qwen3-4B-Instruct-2507</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Class</th>
+      <th>Precision</th>
+      <th>Recall</th>
+      <th>F1-Score</th>
+      <th>Support</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Safe (0)</td>
+      <td>1.00</td>
+      <td>0.98</td>
+      <td>0.99</td>
+      <td>1410</td>
+    </tr>
+    <tr>
+      <td>Unsafe (1)</td>
+      <td>0.96</td>
+      <td>1.00</td>
+      <td>0.98</td>
+      <td>650</td>
+    </tr>
+    <tr>
+      <td>accuracy</td>
+      <td></td>
+      <td></td>
+      <td>0.98</td>
+      <td>2060</td>
+    </tr>
+    <tr>
+      <td>macro avg</td>
+      <td>0.98</td>
+      <td>0.99</td>
+      <td>0.98</td>
+      <td>2060</td>
+    </tr>
+    <tr>
+      <td>weighted avg</td>
+      <td>0.99</td>
+      <td>0.98</td>
+      <td>0.98</td>
+      <td>2060</td>
+    </tr>
+  </tbody>
+</table>
+
+{{ plot:conf_matrix_system_test_Qwen3-4B-Instruct-2507.html }}
+
+<p align="center"><strong>Figure 13:</strong> Test Set Confusion Matrix for System with Qwen3-4B-Instruct-2507</p>
+
+As shown in Tables 8 and 9, the Mistral-based system achieved an overall accuracy of 94%, compared to 98% for the Qwen-based system. Both models attained near-perfect recall for unsafe prompts, with the confusion matrices showing that the Mistral system misclassifying 3 unsafe examples and the Qwen system misclassifying 2. Rather, the difference in performance lies in precision for the unsafe prompts: the Qwen-based system achieved 96%, while the Mistral-based system achieved 84%. The confusion matrices show that this difference corresponds to 120 false positives for the Mistral system versus only 30 for the Qwen system.
+
+Based on these results, Qwen3-4B-Instruct-2507 was selected for deployment in the production system. Additionally, the Qwen-based system offers faster inference due to smaller model size, and this LLM is publicly available for use, eliminating the need to share contact information.
