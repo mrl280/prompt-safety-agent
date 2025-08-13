@@ -29,15 +29,15 @@ def md_to_html(md_filename):
     with open(md_path, "r", encoding="utf-8") as f:
         md_text = f.read()
 
-    return markdown.markdown(md_text)
+    return markdown.markdown(md_text, extensions=["fenced_code", "codehilite"])
 
 
 @app.route("/")
 def index():
-    return redirect("/docs/introduction.html")
+    return redirect("/introduction.html")
 
 
-@app.route("/docs/<page>.html")
+@app.route("/<page>.html")
 def render_page(page):
     """Render a specific markdown page as HTML."""
     md_filename = f"{page}.md"
@@ -55,5 +55,5 @@ def render_page(page):
 
 
 if __name__ == "__main__":
-    # Runw with Flask's built-in development server
+    # Run with Flask's built-in development server
     app.run(host="0.0.0.0", port=8000, debug=True)
