@@ -32,7 +32,7 @@ def md_to_html(md_filename):
 
     return markdown.markdown(
         md_text,
-        extensions=["fenced_code", "codehilite", "pymdownx.arithmatex"],
+        extensions=["fenced_code", "pymdownx.highlight", "pymdownx.arithmatex"],
         extension_configs={"pymdownx.arithmatex": {"generic": True}},  # Leave math as raw tex for MathJax to render
     )
 
