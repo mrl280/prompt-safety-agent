@@ -1,4 +1,5 @@
 import os
+import re
 
 import markdown
 from flask import Flask, abort, redirect, render_template
@@ -20,7 +21,7 @@ PAGE_ORDER = [
 
 def md_to_html(md_filename):
     """
-    Read a markdown file and convert to HTML.
+    Convert Markdown to HTML.
     """
     md_path = os.path.join(CONTENT_DIR, md_filename)
     if not os.path.isfile(md_path):
@@ -36,19 +37,43 @@ def md_to_html(md_filename):
     )
 
 
+def insert_plots(html):
+    """
+    Replace plot placeholders in HTML with actual Plotly plot contents.
+    """
+
+    def repl(match):
+        plot_file = match.group(1)
+        plot_path = os.path.join(CONTENT_DIR, "plots", plot_file)
+        if os.path.isfile(plot_path):
+            with open(plot_path, "r", encoding="utf-8") as f:
+                return f.read()
+        else:
+            return f"<p><strong>Plot file {plot_file} not found.</strong></p>"
+
+    pattern = re.compile(r"\{\{\s*plot:(.+?)\s*\}\}")
+    return pattern.sub(repl, html)
+
+
 @app.route("/")
 def index():
+    """
+    Redirect page root to the Introduction page.
+    """
     return redirect("/introduction.html")
 
 
 @app.route("/<page>.html")
 def render_page(page):
-    """Render a specific markdown page as HTML."""
+    """
+    Render a specific markdown page as HTML.
+    """
     md_filename = f"{page}.md"
     if md_filename not in PAGE_ORDER:
         abort(404)
 
     html_content = md_to_html(md_filename)
+    html_content = insert_plots(html_content)
     page_title = page.replace("-", " ").title()
     return render_template(
         "base.html",
