@@ -37,18 +37,6 @@ clf = Pipeline([
 
 <p align="center"><strong>Table 1:</strong> Train Set Performance Metrics for Vanilla Classifier</p>
 
-<style>
-  table {
-    margin-left: auto;
-    margin-right: auto;
-    border-collapse: separate;
-    border-spacing: 20px 10px;
-  }
-  thead th, tbody td {
-    text-align: right;
-  }
-</style>
-
 <table>
   <thead>
     <tr>
