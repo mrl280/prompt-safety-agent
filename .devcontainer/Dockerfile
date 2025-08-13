@@ -13,13 +13,10 @@ RUN groupadd --gid $USER_GID $USERNAME \
     && chmod 0440 /etc/sudoers.d/$USERNAME \
     && chown -R $USERNAME /home/$USERNAME
 
-# Install additional system dependencies, including Google Chrome, which is required to export Plotly figures
-RUN apt-get update && DEBIAN_FRONTEND=noninteractive \
-    && apt-get install -y --no-install-recommends wget gnupg2 git git-lfs \
-    && wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | apt-key add - \
-    && echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google-chrome.list \
-    && apt-get update \
-    && apt-get install -y --no-install-recommends google-chrome-stable \
+# Install additional system dependencies
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    git \
+    git-lfs \
     && apt-get autoremove -y \
     && apt-get clean -y \
     && rm -rf /var/lib/apt/lists/*
