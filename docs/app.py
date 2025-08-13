@@ -29,7 +29,11 @@ def md_to_html(md_filename):
     with open(md_path, "r", encoding="utf-8") as f:
         md_text = f.read()
 
-    return markdown.markdown(md_text, extensions=["fenced_code", "codehilite"])
+    return markdown.markdown(
+        md_text,
+        extensions=["fenced_code", "codehilite", "pymdownx.arithmatex"],
+        extension_configs={"pymdownx.arithmatex": {"generic": True}},  # Leave math as raw tex for MathJax to render
+    )
 
 
 @app.route("/")
