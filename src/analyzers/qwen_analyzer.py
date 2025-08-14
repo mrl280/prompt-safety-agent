@@ -20,7 +20,6 @@ class QwenAnalyzer(Analyzer):
     _model_filepath = os.path.join(MODELS_DIR, "Qwen3-4B-Instruct-2507")
 
     def __init__(self):
-        print(f"Loading model and tokenizer from {os.path.basename(self._model_filepath)}...")
         self._model = AutoModelForCausalLM.from_pretrained(
             self._model_filepath, torch_dtype="auto", device_map="auto", local_files_only=True
         )

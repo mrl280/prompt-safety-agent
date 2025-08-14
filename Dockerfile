@@ -10,8 +10,10 @@ RUN groupadd --gid $USER_GID $USERNAME \
 
 # Install additional system dependencies
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive \
-    && apt-get install -y --no-install-recommends git \
-    && apt-get autoremove -y && apt-get clean -y \
+    && apt-get install -y --no-install-recommends git git-lfs \
+    && git lfs install \
+    && apt-get autoremove -y \
+    && apt-get clean -y \
     && rm -rf /var/lib/apt/lists/*
 
 # Set working directory
@@ -35,6 +37,9 @@ COPY docs /app/docs
 RUN [ ! -d /app/models/Qwen3-4B-Instruct-2507 ] && \
     git clone https://huggingface.co/Qwen/Qwen3-4B-Instruct-2507 /app/models/Qwen3-4B-Instruct-2507 || \
     echo "Model Qwen3-4B-Instruct-2507 already exists, skipping clone"
+
+# Pull the large files from LFS
+RUN cd /app/models/Qwen3-4B-Instruct-2507 && git lfs pull
 
 # Copy your source code into /app
 COPY src/ /app/src/
