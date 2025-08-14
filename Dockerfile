@@ -16,15 +16,15 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive \
     && apt-get clean -y \
     && rm -rf /var/lib/apt/lists/*
 
-# Switch to non-root
-USER $USERNAME
-WORKDIR /app
-
 # Install Python packages
 COPY --chown=$USERNAME:$USERNAME requirements.txt ./
 RUN pip install --upgrade pip && \
     pip install --no-cache-dir -r requirements.txt && \
     rm requirements.txt
+
+# Switch to non-root
+USER $USERNAME
+WORKDIR /app
 
 # Copy local prompt, model, and data files to /app directory
 RUN mkdir -p /app/models /app/prompts /app/data /app/docs
