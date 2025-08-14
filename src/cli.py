@@ -40,7 +40,7 @@ def docs(host, port):
     """
     import subprocess
 
-    cmd = ["gunicorn", "src.utils.docs_server:app", "--bind", f"{host}:{port}"]  # noqa: E231
+    cmd = ["gunicorn", "docs.app:app", "--bind", f"{host}:{port}"]  # noqa: E231
     click.echo(f"Starting Gunicorn with command: {' '.join(cmd)}")
     subprocess.run(cmd)
 

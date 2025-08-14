@@ -33,3 +33,5 @@ This project was a rewarding opportunity to explore an exciting application of L
 - Introduce an option to query the LLM multiple times per prompt, allowing users a trade off between improved classification accuracy and increased computational cost.
 
 - Explore and implement novel approaches to prompt safety analysis, such as gradient-based detection methods (e.g., [GradSafe](https://arxiv.org/abs/2402.13494)) or feature- and response-based classification approaches (e.g., [Adversarial Prompt Detection](https://www.sciencedirect.com/org/science/article/pii/S1546221825004898)).
+
+- Add automated testing.

@@ -1,4 +1,27 @@
-# Ignore all files in the models/ directory except those required in the production deployment
+# Version control
+.git
+.gitignore
+.github
+
+# Python caches and environment
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.env
+*.venv
+env/
+venv/
+*.egg-info/
+
+# Editor configs
+.vscode/
+.idea/
+
+# Other unnecessary files
+.DS_Store
+
+# All files in the models/ directory except those required
 models/*
 !models/tdidf_classifier.joblib
 !models/Qwen3-4B-Instruct-2507/

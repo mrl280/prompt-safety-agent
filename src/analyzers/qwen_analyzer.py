@@ -21,8 +21,10 @@ class QwenAnalyzer(Analyzer):
 
     def __init__(self):
         print(f"Loading model and tokenizer from {os.path.basename(self._model_filepath)}...")
-        self._model = AutoModelForCausalLM.from_pretrained(self._model_filepath, torch_dtype="auto", device_map="auto")
-        self._tokenizer = AutoTokenizer.from_pretrained(self._model_filepath)
+        self._model = AutoModelForCausalLM.from_pretrained(
+            self._model_filepath, torch_dtype="auto", device_map="auto", local_files_only=True
+        )
+        self._tokenizer = AutoTokenizer.from_pretrained(self._model_filepath, local_files_only=True)
 
         # Read system prompt text from file
         with open(self._sys_prompt_filepath, "r", encoding="utf-8") as f:

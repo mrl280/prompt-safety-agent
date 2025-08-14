@@ -12,7 +12,7 @@ With sufficient compute resources, this test could be handled gracefully within 
 
 ### Usage
 
-1; Create a Python virtual environment and install the required packages from `requirements_dev.txt`:
+1. Create a Python virtual environment and install the required packages from `requirements_dev.txt`:
 
 ```bash
 python3.12 -m venv .venv
@@ -21,19 +21,19 @@ pip install --upgrade pip
 pip install -r requirements_dev.txt
 ```
 
-2; Start a new tmux session:
+2. Start a new tmux session:
 
 ```bash
 tmux new -s llm_eval
 ```
 
-3; Activate the previously created virtual environment inside the tmux session:
+3. Activate the previously created virtual environment inside the tmux session:
 
 ```bash
 source .venv/bin/activate
 ```
 
-4; Run the script in from the project root directory:
+4. Run the script in from the project root directory:
 
 ```bash
 python -m scripts.llm_safety_eval \
@@ -51,13 +51,10 @@ python -m scripts.llm_safety_eval \
     --system-prompt-path ./prompts/safety_check.txt
 ```
 
-3; Detach from the session:
-`Ctrl + b`, then `d`
-
-4; To attach to an existing session:
+To detach from the session: `Ctrl + b`, then `d`. To attach to an existing session:
 
 ```bash
-tmux attach -t llm_eval
+tmux attach -t <session_name>
 ```
 
 **Note:** You can list all active tmux sessions by running: `tmux ls`.
