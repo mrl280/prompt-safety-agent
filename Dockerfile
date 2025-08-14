@@ -16,22 +16,23 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive \
     && apt-get clean -y \
     && rm -rf /var/lib/apt/lists/*
 
-# Set working directory
+# Switch to non-root
+USER $USERNAME
 WORKDIR /app
 
 # Install Python packages
-COPY requirements.txt ./
+COPY --chown=$USERNAME:$USERNAME requirements.txt ./
 RUN pip install --upgrade pip && \
     pip install --no-cache-dir -r requirements.txt && \
     rm requirements.txt
 
-
 # Copy local prompt, model, and data files to /app directory
 RUN mkdir -p /app/models /app/prompts /app/data /app/docs
-COPY models /app/models
-COPY prompts /app/prompts
-COPY data /app/data
-COPY docs /app/docs
+COPY --chown=$USERNAME:$USERNAME models /app/models
+COPY --chown=$USERNAME:$USERNAME prompts /app/prompts
+COPY --chown=$USERNAME:$USERNAME data /app/data
+COPY --chown=$USERNAME:$USERNAME docs /app/docs
+COPY --chown=$USERNAME:$USERNAME src /app/src
 
 # Clone the Qwen3-4B-Instruct-2507 model from Hugging Face into /app/models, if it doesn't already exist
 RUN [ ! -d /app/models/Qwen3-4B-Instruct-2507 ] && \
@@ -40,15 +41,6 @@ RUN [ ! -d /app/models/Qwen3-4B-Instruct-2507 ] && \
 
 # Pull the large files from LFS
 RUN cd /app/models/Qwen3-4B-Instruct-2507 && git lfs pull
-
-# Copy your source code into /app
-COPY src/ /app/src/
-
-# Change ownership so non-root user can access files
-RUN chown -R $USERNAME:$USERNAME /app
-
-# Switch to non-root user
-USER $USERNAME
 
 # Set default command to your CLI script entry point, passing command line argument(s)
 ENTRYPOINT ["python", "-m", "src.cli"]
