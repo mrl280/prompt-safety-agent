@@ -6,8 +6,8 @@ Pre-trained models were used to leverage existing language understanding, while 
 
 The following two candidates were evaluated:
 
-- [Mistral-7B-Instruct-v0.3](https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.3)
-- [Qwen/Qwen3-4B-Instruct-2507](https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.3)
+- [mistralai/Mistral-7B-Instruct-v0.3](https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.3)
+- [Qwen/Qwen3-4B-Instruct-2507](https://huggingface.co/Qwen/Qwen3-4B-Instruct-2507)
 
 Mistral-7B-Instruct-v0.3 is an older model, released on May 22, 2024, while Qwen3-4B-Instruct-2507 was released on August 5, 2025, just a few days before the start of this project. Despite being older, the Mistral model is 75% larger.
 

@@ -330,7 +330,7 @@ Based on dataset exploration, unigrams provided the strongest signal, while bigr
 
 <p align="center"><strong>Figure 8:</strong> Test Set Confusion Matrix for Custom Weights with Bigrams and Trigrams</p>
 
-Including n-grams of lengths 1, 2, and 3 provides a slight improvement in model performance, raising the recall for unsafe prompts above 99%. The confusion matrix shows that misclassified positives decrease from 9 to 6, while misclassified negatives increase slightly from 7 to 8. Consequently, this is the best-performing iteration of this model, and it serves as the TD-IDF classifier in the production system.
+Including \( n \)-grams of lengths 1, 2, and 3 provides a slight improvement in model performance, raising the recall for unsafe prompts above 99%. The confusion matrix shows that misclassified positives decrease from 9 to 6, while misclassified negatives increase slightly from 7 to 8. Consequently, this is the best-performing iteration of this model, and it serves as the TD-IDF classifier in the production system.
 
 ## Confidence analysis
 

@@ -80,8 +80,6 @@ When a input prompt is received, the following algorithm is used to generate a s
 
 5. If both the TF-IDF classifier and and LLM analyzer agree, generate a combined safety report. This is done by averaging the confidence score and using the recommendation and explanation from the LLM report as it is usually richer and more specific.
 
-As a potential future improvement, prompts flagged as unsafe by the TF-IDF classifier could be passed through the same LLM with a different system prompt to obtain a continuous safety score, along with a more detailed explanation and recommended action.
-
 This algorithm ensures that the LLM is invoked at most once per prompt, minimizing computational cost. Alternative approaches may improve classification accuracy by querying the LLM multiple times with varied inputs, albeit at a higher computational expense. A future enhancement could include a command-line option to allow users to balance execution time and report accuracy.
 
 ## System evaluation

@@ -61,7 +61,8 @@
                 "docker.docker",
                 "davidanson.vscode-markdownlint",
                 "wholroyd.jinja",
-                "monosans.djlint"
+                "monosans.djlint",
+                "streetsidesoftware.code-spell-checker"
             ]
         }
     },
