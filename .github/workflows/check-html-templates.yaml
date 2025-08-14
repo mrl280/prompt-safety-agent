@@ -25,7 +25,7 @@ jobs:
         run: pip install djlint
 
       - name: Check formatting with djLint
-        run: djlint docs --check
+        run: djlint docs/templates --check
 
       - name: Lint with djLint
-        run: djlint docs --lint
+        run: djlint docs/templates --lint
