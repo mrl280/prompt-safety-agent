@@ -10,6 +10,8 @@ An AI tool for unsafe prompt detection. This project combines statistical text a
 
 - Since this project uses [Qwen3-4B-Instruct-2507](https://huggingface.co/Qwen/Qwen3-4B-Instruct-2507), a GPU with approximately 8–12 GB of VRAM is recommended. If the full model cannot fit on the GPU, it will run using [Big Model inference](https://huggingface.co/docs/accelerate/en/usage_guides/big_modeling). Running on a CPU is possible, but it will be much slower. This project is implemented in PyTorch with CUDA 12.6 and requires an NVIDIA GPU with compute capability 3.0 or higher and a compatible NVIDIA driver.
 
+- At least 25 GB of free disk space.
+
 ## 🚀 Getting started
 
 The easiest way to get started with the Prompt Safety Agent is to pull the latest project image from Docker Hub:
